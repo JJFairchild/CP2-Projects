@@ -9,9 +9,11 @@
 #Calculate sale price (with discounts) (function)
 #Calculate tips (function)
 
+
 def main():
     pass
 
+import copy
 balance = 100
 
 def goalTime(): #Calculates the time until a specified goal is reached.
@@ -43,6 +45,14 @@ def compound(): #Calculates how much money will be made under compound interest.
         return ""
 
 def allocate(): #Gets a bunch of segments with a percent value, and allocates an amount of the total income to those segments.
+    percent = 0
+    allocateList = []
     while percent < 100:
         segment = input("What do you want to allocate your income to?: ")
-        tempPercent = int(input("How much of your income do you want to allocate to this? (in percent form, but remove '%' sign): "))
+        p = int(input("How much of your income do you want to allocate to this? (in percent form, but remove '%' sign): "))
+        percent += p
+        allocateList += f"{copy.deepcopy(segment)}, {copy.deepcopy(p)}"
+        print(f"You have {100-percent}% left to allocate.")
+    print(allocateList, end='\n')
+
+allocate()
