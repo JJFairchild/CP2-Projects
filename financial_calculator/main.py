@@ -7,6 +7,7 @@
 #Calculate tips (function)
 
 import copy
+import os
 
 def goalTime(): #Calculates the time until a specified goal is reached.
     print()
@@ -32,11 +33,17 @@ def allocate(): #Gets a bunch of segments with a percent value, and allocates an
     percent = 0
     allocateList = []
     while percent < 100:
+        os.system('cls')
+        for item in allocateList:
+            print(item, end="\n")
+        else:
+            print()
         print(f"You have {100-percent}% left to allocate.")
         segment = input("What do you want to allocate your income to?: ")
         p = float(input("How much of your income do you want to allocate to this? (in percent form, but remove '%' sign): "))
         percent += p
         allocateList += [f"{copy.deepcopy(segment)}: {copy.deepcopy(p)}%"]
+    os.system('cls')
     for item in allocateList:
         print(item, end="\n")
     print()
@@ -53,8 +60,9 @@ def tip(): #Calclulates how expensive an item is if a tip is included.
     tip = float(input("How big of a tip do you want to give? (in percent form, but remove '%' sign): "))
     print(f"The total will be ${price * ((100 + tip) / 100)}.\n")
 
-def main():
+def main(): 
     while True:
+        os.system('cls')
         choice = int(input("What do you want to do?\n1: Save for a goal\n2: Use compound interest calculator\n3: Allocate your income for budgeting\n4: Use sale calculator\n5: Use tip calculator\n"))
         if choice == 1:
             goalTime()
@@ -66,5 +74,6 @@ def main():
             sale()
         elif choice == 5:
             tip()
+        input("Done reading?: ")
 
 main()
