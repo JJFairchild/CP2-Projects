@@ -17,7 +17,7 @@ def goalTime(): #Calculates the time until a specified goal is reached.
         goalType = 30
     else:
         goalType = 7
-    goalAmount = int(input("How much money will you allocate to your goal after this time?: "))
+    goalAmount = float(input("How much money will you allocate to your goal after this time?: "))
     print(f"Your goal will take {((goal - balance) / goalAmount) * goalType} days to reach.\n")
 
 def compound(): #Calculates how much money will be made under compound interest.
