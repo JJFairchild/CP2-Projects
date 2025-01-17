@@ -51,7 +51,7 @@ def allocate(): #Gets a bunch of segments with a percent value, and allocates an
         segment = input("What do you want to allocate your income to?: ")
         p = int(input("How much of your income do you want to allocate to this? (in percent form, but remove '%' sign): "))
         percent += p
-        allocateList += f"{copy.deepcopy(segment)}, {copy.deepcopy(p)}"
+        allocateList += f"{copy.copy(segment)}, {copy.copy(p)}"
         print(f"You have {100-percent}% left to allocate.")
     print(allocateList, end='\n')
 
