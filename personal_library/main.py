@@ -1,9 +1,4 @@
-#Stores all items in a set or tuple (done)
-#Function to add a new item (done)
-#Function to search the items
-#Function to remove an item (done)
-#Function to display ALL items (done)
-#Function that runs the code (displays the menu options inside and calls the functions inside of a while True loop)
+#Jonas Fairchild, Personal Library Program
 
 import os
 
