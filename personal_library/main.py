@@ -41,8 +41,6 @@ def display(songs):
         print("The song list is empty.")
 
 def search(songs):
-    print(songs != ())
-    print(songs)
     if songs != ():
         searchResults = []
         if input("Do you want to search by artist or by title?: ").lower()[0] == "a":
@@ -64,20 +62,22 @@ def search(songs):
 def main():
     songs = ()
     while True:
+        try:
+            os.system("cls")
+            choice = int(input("What do you want to do?\n1. Search the song list\n2. Add an item to the list\n3. Remove an item from the list\n4. Display the list\n5. Exit the program\n"))
+            if choice == 1:
+                search(songs)
+            elif choice == 2:
+                songs = add(songs)
+            elif choice == 3:
+                songs = remove(songs)
+            elif choice == 4:
+                display(songs)
+            elif choice == 5:
+                break
+            input("Done reading?: ")
+        except:
+            print("Invalid input. Try again.")
+            input("Done reading?: ")
         
-        os.system("cls")
-        choice = int(input("What do you want to do?\n1. Search the song list\n2. Add an item to the list\n3. Remove an item from the list\n4. Display the list\n5. Exit the program\n"))
-        if choice == 1:
-            search(songs)
-        elif choice == 2:
-            songs = add(songs)
-        elif choice == 3:
-            songs = remove(songs)
-        elif choice == 4:
-            display(songs)
-        elif choice == 5:
-            break
-        input("Done reading?: ")
-        
-
 main()
