@@ -1,27 +1,18 @@
 #Jonas Fairchild, Password Generator
 
-#A main function that runs the code
-#Functions for the different password requirements
-#A function that assembles that password once it is the correct length
-#Users should be able to specify length and if they want to include
-#uppercase letters
-#lowercase letters
-#numbers
-#special characters
+import random
 
-import os
-import copy
-
-lower_letters = {"q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m"}
+#This section of the code simply defines all the sets of letters and characters used in the possible passwords.
+lower_letters = {"q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m"} 
 upper_letters = []
 for letter in lower_letters:
     upper_letters.append(letter.upper())
 upper_letters = set(upper_letters)
 numbers = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0"}
 special = {"`", "~", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "=", "+", "[", "{", "]", "}", "|", ";", ":", "'", '"', ",", "<", ".", ">", "/", "?"}
-all_characters = [lower_letters, upper_letters, numbers, special]
+all_characters = [special, numbers, upper_letters, lower_letters]
 
-def characters():
+def characters(): #Gets the length of the user's password
     while True:
         try:
             characters = int(input("How many characters should your password have?: "))
@@ -33,30 +24,49 @@ def characters():
         except:
             print("That isn't a number. Try again.")
 
-def add_lower():
+def add_lower(): #Asks if lowercase letters should be added and removes them from all_characters if not
     if input("Should your password include lowercase letters? (Y/n): ").lower()[0] == "n":
-        del all_characters[0]
-        return all_characters
-    else:
-        return all_characters
-    
-def add_upper():
-    if input("Should your password include uppercase letters? (Y/n): ").lower()[0] == "n":
-        del all_characters[1]
-        return all_characters
-    else:
-        return all_characters
-
-def add_numbers():
-    if input("Should your password include numbers? (Y/n): ").lower()[0] == "n":
-        del all_characters[2]
-        return all_characters
-    else:
-        return all_characters
-    
-def add_special():
-    if input("Should your password include special characters? (Y/n): ").lower()[0] == "n":
         del all_characters[3]
         return all_characters
     else:
         return all_characters
+    
+def add_upper(): #Asks if uppercase letters should be added and removes them from all_characters if not
+    if input("Should your password include uppercase letters? (Y/n): ").lower()[0] == "n":
+        del all_characters[2]
+        return all_characters
+    else:
+        return all_characters
+
+def add_numbers(): #Asks if numbers should be added and removes them from all_characters if not
+    if input("Should your password include numbers? (Y/n): ").lower()[0] == "n":
+        del all_characters[1]
+        return all_characters
+    else:
+        return all_characters
+    
+def add_special(): #Asks if special characters should be added and removes them from all_characters if not
+    if input("Should your password include special characters? (Y/n): ").lower()[0] == "n":
+        del all_characters[0]
+        return all_characters
+    else:
+        return all_characters
+
+def password_gen(ch): #Takes the list of all characters and an intended password length, then randomly generates 4 passwords with this information.
+    for i in range(1, 5):
+        password = ""
+        while len(password) != ch:
+            password += random.choice(list(random.choice(all_characters)))
+        print(f"{i}. {password}")
+
+def main(): #Collects all the previous functions neatly, and gets all the information the password_gen function needs to make passwords.
+    ch = characters()
+    all_characters = add_lower()
+    all_characters = add_upper()
+    all_characters = add_numbers()
+    all_characters = add_special()
+    print()
+    password_gen(ch)
+    print()
+
+main()
