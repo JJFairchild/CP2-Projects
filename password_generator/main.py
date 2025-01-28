@@ -1,6 +1,7 @@
 #Jonas Fairchild, Password Generator
 
 import random
+import os
 
 #This section of the code simply defines all the sets of letters and characters used in the possible passwords.
 lower_letters = {"q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m"} 
@@ -16,6 +17,7 @@ def characters(): #Gets the length of the user's password
     while True:
         try:
             characters = int(input("How many characters should your password have?: "))
+            while characters < 1 or characters > 10000:
             while characters < 1 or characters > 10000:
                 print("That number is too small or too big. Try again.")
                 characters = int(input("How many characters should your password have?: "))
