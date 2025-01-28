@@ -18,7 +18,6 @@ def characters(): #Gets the length of the user's password
         try:
             characters = int(input("How many characters should your password have?: "))
             while characters < 1 or characters > 10000:
-            while characters < 1 or characters > 10000:
                 print("That number is too small or too big. Try again.")
                 characters = int(input("How many characters should your password have?: "))
             else:
