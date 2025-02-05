@@ -1,65 +1,73 @@
-#Jonas Fairchild, Personal Library Program
+#Jonas Fairchild, Upgraded Personal Library Program
 
 import os
 
-def add(songs):
+def add(songs): #Adds a song to the tuple in dictionary form.
     song = input("What song do you want to add to the list?: ")
     writer = input("Who wrote the song?: ")
-    return tuple(list(songs) + [[song, writer]])
+    studio = input("What studio does was it recorded in?: ")
+    location = input("Where is the studio located?: ")
+    return tuple(list(songs) + [{"name": song, "writer": writer, "studio": studio, "location": location}])
 
-def remove(songs):
-    if songs != ():
+def remove(songs): #Removes songs from the tuple.
+    if songs: #Checks that the songlist isn't empty.
         while True:
             print("What item do you want to remove from the list?\n\nOptions:")
+            for item in songs: #Tell user options to remove
+                print(item['name'], end = "\n")
+            song = input().lower() #Get the item to remove
             for item in songs:
-                print(item[0], end = "\n")
-            song = input().lower()
-            for item in songs:
-                if item[0].lower() == song:
+                if item['name'].lower() == song:
                     songList = list(songs)
-                    del songList[songs.index(item)]
+                    del songList[songs.index(item)] #If item exists, remove it
                     return tuple(songList)
-            else:
-                print("That song isn't on the list.")
-                return songs
+            print("That song isn't on the list.")
+            return songs
     else:
         print("There's nothing to remove.")
         return songs
 
-def display(songs):
-    if songs != ():
-        count = 1
-        for song in songs:
-            print(f"{count}. {song[0]}, by {song[1]}.\n")
-            count += 1
+def display(songs): #Displays songs and their information
+    if songs: #Checks that songlist isn't empty.
+        for i, song in enumerate(songs, start = 1):
+            print(f"{i}. {song['name']}, by {song['writer']}, recorded in {song['studio']}, {song['location']}.\n") #Displays every song's information.
     else:
         print("The song list is empty.")
 
-def search(songs):
-    if songs != ():
-        searchResults = []
-        if input("Do you want to search by artist or by title?: ").lower()[0] == "a":
-            searchType = 1
-        else:
-            searchType = 0
-        search = input("What is your search?: ").lower()
+def search(songs): #Searches through the list of songs.
+    if songs: #Checks that the songlist isn't empty.
+        searchType = ''
+        while not searchType: #While not valid input
+            searchResults = []
+            match input("Do you want to search by title, artist, studio, or location?: "): #Gets search type and assigns it
+                case "title":
+                    searchType = 'name'
+                case "artist":
+                    searchType = 'writer'
+                case "studio":
+                    searchType = 'studio'
+                case "location":
+                    searchType = 'location'
+                case _:
+                    print("Invalid Input. Try again.")
+        search = input("What is your search?: ").lower() #Gets the search
         for song in songs:
-            if search in song[searchType].lower():
+            if search in song[searchType].lower(): #Adds all results to a list
                 searchResults += [song]
         print("Search results:")
         if searchResults != []:
-            display(searchResults)
+            display(searchResults) #Prints all the search results
         else:
             print("None")
     else:
         print("There's nothing to search for.")
 
-def main():
-    songs = ()
+def main(): #Main UI for the program.
+    songs = () #Assigns the songlist in tuple form
     while True:
         try:
             os.system("cls")
-            choice = int(input("What do you want to do?\n1. Search the song list\n2. Add an item to the list\n3. Remove an item from the list\n4. Display the list\n5. Exit the program\n"))
+            choice = int(input("What do you want to do?\n1. Search the song list\n2. Add an item to the list\n3. Remove an item from the list\n4. Display the list\n5. Exit the program\n")) #Gets the user's choice and performs it
             if choice == 1:
                 search(songs)
             elif choice == 2:
