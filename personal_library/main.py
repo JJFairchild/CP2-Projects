@@ -7,6 +7,7 @@ def add(songs): #Adds a song to the tuple in dictionary form.
     writer = input("Who wrote the song?: ")
     studio = input("What studio does was it recorded in?: ")
     location = input("Where is the studio located?: ")
+    print("Song successfully added.")
     return tuple(list(songs) + [{"name": song, "writer": writer, "studio": studio, "location": location}])
 
 def remove(songs): #Removes songs from the tuple.
@@ -20,6 +21,7 @@ def remove(songs): #Removes songs from the tuple.
                 if item['name'].lower() == song:
                     songList = list(songs)
                     del songList[songs.index(item)] #If item exists, remove it
+                    print("Song successfully deleted.")
                     return tuple(songList)
             print("That song isn't on the list.")
             return songs
@@ -29,8 +31,18 @@ def remove(songs): #Removes songs from the tuple.
 
 def display(songs): #Displays songs and their information
     if songs: #Checks that songlist isn't empty.
-        for i, song in enumerate(songs, start = 1):
-            print(f"{i}. {song['name']}, by {song['writer']}, recorded in {song['studio']}, {song['location']}.\n") #Displays every song's information.
+        while True:
+            match input("Do you want to display results in a simple or complex format?: ").lower(): #Gets what format the songs should be displayed in
+                case "simple":
+                    for song in songs:
+                        print(f"{song['name']} / {song['writer']}\n") #Displays every song's information in a simple format.
+                    break
+                case "complex":
+                    for i, song in enumerate(songs, start = 1):
+                        print(f"{i}. {song['name']}, by {song['writer']}, recorded in {song['studio']}, {song['location']}.\n") #Displays every song's information in a complex format.
+                    break
+                case _:
+                    print("Invalid input. Try again.")
     else:
         print("The song list is empty.")
 
@@ -39,7 +51,7 @@ def search(songs): #Searches through the list of songs.
         searchType = ''
         while not searchType: #While not valid input
             searchResults = []
-            match input("Do you want to search by title, artist, studio, or location?: "): #Gets search type and assigns it
+            match input("Do you want to search by title, artist, studio, or location?: ").lower(): #Gets search type and assigns it
                 case "title":
                     searchType = 'name'
                 case "artist":
