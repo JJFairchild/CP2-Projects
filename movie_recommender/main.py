@@ -1,25 +1,22 @@
 #Jonas Fairchild, movie recommender
 
-#User is able to choose at least 2 filters for the program to search through
-#User can get recommendations based on genre, directors, length and/or actors 
-#User is able to print the whole list
-
 import csv
 import os
+import copy
 
-movies = []
+movies = [] #Opens the movie file and gives it a variable in the form of a dictionary for easy access.
 with open('movie_recommender\Movies list.csv', 'r') as file:
     csv_reader = csv.reader(file)
     next(csv_reader)
     for i in csv_reader:
         movies.append({"title": i[0], "director": i[1], "genre": i[2], "rating": i[3], "length": i[4], "note_actors": i[5]})
 
-def display_movies(movies):
+def display_movies(movies): #Displays a given list of movies in an easy-to-read format.
     for movie in movies:
         print(f'Title: {movie["title"]}\nDirector: {movie["director"]}\nGenre: {movie["genre"]}\nRating: {movie["rating"]}\nLength: {movie["length"]} minutes\nNotable actors: {movie["note_actors"]}\n')
 
 def search_movies(): #Searches the list of movies for specific movies.
-    search_cats = set({})
+    searches = []
     while True: #Gets the number of search conditions to use
         try:
             count = int(input("How many search conditions do you want to use?: "))
@@ -30,37 +27,43 @@ def search_movies(): #Searches the list of movies for specific movies.
         except:
             print("That's not a number. Try again.")
 
-    for i in range(count): #Gets the categories of the search
+    for i in range(count): #Gets the categories of the search and the search itself for each category
         match input("What category do you want to search for? (title, director, genre, rating, length, actors): ").lower():
             case "title":
-                search_cats.add("title")
+                searches.append(["title", input("What will you search for?: ")])
             case "director":
-                search_cats.add("director")
+                searches.append(["director", input("What will you search for?: ")])
             case "genre":
-                search_cats.add("genre")
+                searches.append(["genre", input("What will you search for?: ")])
             case "rating":
-                search_cats.add("rating")
+                searches.append(["rating", input("What will you search for?: ")])
             case "length":
-                search_cats.add("length")
+                searches.append(["length", input("What will you search for?: ")])
             case "actors":
-                search_cats.add("note_actors")
+                searches.append(["note_actors", input("What will you search for?: ")])
             case _:
                 print("Invalid input.")
     
-    
+    movie_copy = copy.deepcopy(movies)
+    for movie in movies: #Searches a copy of the list of movies and removes anything that doesn't match, displays the results at the end
+        for search in searches:
+            if not search[1] in movie[search[0]]:
+                try:
+                    movie_copy.remove(movie)
+                except:
+                    pass
+    print("Search results:\n")
+    display_movies(movie_copy)
 
-
-def main():
+def main(): #Main UI function, branches to the different parts of the program.
     while True:
         os.system("cls")
-        match input("What do you want to do?\n1. Get a movie reccomendation\n2. Search the movie list\n3. Print the movie list\n4. Exit\n"):
+        match input("What do you want to do?\n1. Search the movie list\n2. Print the movie list\n3. Exit\n"):
             case "1":
-                pass
-            case "2":
                 search_movies()
-            case "3":
+            case "2":
                 display_movies(movies)
-            case "4":
+            case "3":
                 break
             case _:
                 print("Invalid input. Try again.")
