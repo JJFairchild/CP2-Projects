@@ -1,5 +1,7 @@
-def count():
-    with open("word_counter/words.txt", "r") as file:
+import time
+
+def count(text):
+    with open(text, "r") as file:
         word = ""
         words = 0
         for letter in file.read() + "\n":
@@ -10,8 +12,3 @@ def count():
             else:
                 word += letter
         return words
-
-print(count())
-
-if __name__ == "main":
-    print(count())
