@@ -1,17 +1,15 @@
 #Jonas Fairchild, Word Counter
 
-#Note: Add an option to input the file to read.
-
-import os
+import os #Import some necessary modules and functions.
 import time
 from file_handling import count
 from time_handling import check_time
 
-def find_path():
+def find_path(): #Function for finding the relative path of the intended text file.
     txt = input("What is the relative path of the intended text file?: ")
     while True:
         try:
-            with open(txt, "r") as file:
+            with open(txt, "r") as file: #Tries to read the file
                 file.read()
             break
         except:
@@ -19,15 +17,15 @@ def find_path():
             txt = input("What is the relative path of the intended text file?: ")
     return txt
 
-def main():
-    txt = find_path()
+def main(): #Main function that branches out to other parts of the program
+    txt = find_path() #Setting some variables necessary for the time tracker
     last_count = count(txt)
     edit_time = False
     while True:
-        edit_time = check_time(last_count, txt, edit_time)
+        edit_time = check_time(last_count, txt, edit_time) #Check if the document has been edited, then record the time of it if it has happened.
         last_count = count(txt)
         os.system("cls")
-        match input("What do you want to do?:\n1. Change the path\n2. View the text file's current wordcount\n3. View the time passed since the last wordcount update\n4. Exit\n"):
+        match input("What do you want to do?:\n1. Change the path\n2. View the text file's current wordcount\n3. View the time passed since the last wordcount update\n4. Exit\n"): #Gets a command, then follows the corresponding function.
             case "1":
                 txt = find_path()
             case "2":
