@@ -25,16 +25,19 @@ def main(): #Main function that branches out to other parts of the program
         edit_time = check_time(last_count, txt, edit_time) #Check if the document has been edited, then record the time of it if it has happened.
         last_count = count(txt)
         os.system("cls")
-        match input("What do you want to do?:\n1. Change the path\n2. View the text file's current wordcount\n3. View the time passed since the last wordcount update\n4. Exit\n"): #Gets a command, then follows the corresponding function.
+        match input("What do you want to do?:\n1. Change the path\n2. Write the text file's current wordcount\n3. Write the time passed since the last wordcount update\n4. Exit\n"): #Gets a command, then follows the corresponding function.
             case "1":
-                txt = find_path()
+                txt = find_path() #Redefines the path that is being used.
             case "2":
-                print(f"The document currently has {count(txt)} words.")
+                with open(txt, "a") as file: #Writes the file's word count on it.
+                    file.write(f"\nWord count: {count(txt)}")
             case "3":
                 if edit_time:
-                    print(f"The document's word count was updated {int(time.time() - edit_time)} seconds ago.")
+                    last_updated = int(time.time() - edit_time)
                 else:
-                    print("The document has not been updated since the program started.")
+                    last_updated = "N/A"
+                with open(txt, "a") as file: #Writes the time that it was last updated onto the file.
+                    file.write(f"\nLast updated: {last_updated} seconds ago")
             case "4":
                 break
             case _:
