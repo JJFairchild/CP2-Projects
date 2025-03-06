@@ -16,9 +16,9 @@ def get_char(chars, type):
     print(f"What character do you want to {type}?")
     for char in chars:
         print(f"- {char["name"]}")
-    choice = input()
+    choice = input().lower()
     for char in chars:
-        if choice == char["name"]:
+        if choice == char["name"].lower():
             return char
     print("That's not a valid character. Try again.")
     get_char(chars, type)
@@ -27,8 +27,21 @@ def create_char():
     return {"name": get_prop("name", False).capitalize(), "health": get_prop("health"), "strength": get_prop("strength"), "defense": get_prop("defense"), "speed": get_prop("speed")}
 
 def edit_char(chars):
-    get_char(chars, "edit")
-    match input("What do you want to do?\n"):
-        case "1":
-            pass
+    char = get_char(chars, "edit")
+    while True:
+        match input("What trait do you want to edit?\n- Name\n- Health\n- Strength\n- Defense\n- Speed").lower():
+            case "name":
+                get_prop("new name")
+                type = "name"
+            case "health":
+                type = "health"
+            case "strength":
+                type = "strength"
+            case "defense":
+                type = "defense"
+            case "speed":
+                type = "speed"
+            case _:
+                print("That's not a valid option. Options: name, health, strength, defense, speed. Try again.")
+    
     
