@@ -1,15 +1,8 @@
 import time
 from file_handling import count
 
-def check_time(last_count):
-    try: #Gets the time that the text was last edited
-        with open("word_counter/save_time.txt", "r") as file:
-            edit_time = float(file.read())
-    except:
-        edit_time = time.time()
-    
-    if last_count != count(): #If the wordcount has been updated, write the current time to the save_time file.
-        with open("word_counter/save_time.txt", "w") as file:
-            file.write(str(time.time()))
-    
-    print(f"The wordcount of the text was updated {int(time.time() - edit_time)} seconds ago.")
+def check_time(last_count, txt, edit_time): #Checks if the file has been edited.
+    if count(txt) != last_count: #If the count isn't the same as it was before, then return the current time. Otherwise, return the time of the last modification.
+        return time.time()
+    else:
+        return edit_time
