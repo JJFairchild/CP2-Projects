@@ -2,26 +2,25 @@
 
 import os
 from characters import *
+from battle import battle
 
 def main(chars):
     while True:
         os.system('cls')
-        match input("What do you want to do?\n1. Create a character\n2. Change a character's info\n3. Delete a character\n4. View characters\n5. Battle\n6. Exit\n"):
+        match input("What do you want to do?\n1. Create a character\n2. Delete a character\n3. View characters\n4. Battle\n5. Exit\n"):
             case "1":
                 chars = create_char(chars)
             case "2":
-                chars = edit_char(chars)
-            case "3":
                 chars = remove_char(chars)
+            case "3":
+                display(chars)
             case "4":
-                pass
+                battle(chars)
             case "5":
-                pass
-            case "6":
                 break
             case _:
                 print("That's not a valid input. Try again.")
         input("Done reading?: ")
     return chars
 
-main()
+chars = main()

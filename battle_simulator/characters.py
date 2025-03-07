@@ -24,36 +24,14 @@ def get_char(chars, type, other=' character do'):
     return get_char(chars, type)
 
 def create_char(chars):
-    return chars.append({"name": get_prop("name", False).capitalize(), "health": get_prop("health"), "strength": get_prop("strength"), "defense": get_prop("defense"), "speed": get_prop("speed")})
-
-def edit_char(chars):
-    if len(chars) >= 1:
-        char = get_char(chars, "edit")
-        while True:
-            match input("What trait do you want to edit?\n- Name\n- Health\n- Strength\n- Defense\n- Speed\n").lower():
-                case "name":
-                    char["name"] = get_prop("new name", False).capitalize()
-                    break
-                case "health":
-                    char["health"] = get_prop("new health")
-                    break
-                case "strength":
-                    char["strength"] = get_prop("new strength")
-                    break
-                case "defense":
-                    char["defense"] = get_prop("new defense")
-                    break
-                case "speed":
-                    char["speed"] = get_prop("new speed")
-                    break
-                case _:
-                    print("That's not a valid option. Options: name, health, strength, defense, speed. Try again.")
-        return chars
-    else:
-        print("There aren't any characters to edit.")
+    return chars.append({"name": get_prop("name", False).capitalize(), "health": get_prop("health"), "strength": get_prop("strength"), "defense": get_prop("defense"), "speed": get_prop("speed"), "level": 1})
 
 def remove_char(chars):
     if len(chars) >= 1:
         return chars.remove(get_char(chars, "remove"))
     else:
-        print("There aren't any characters to edit.")
+        print("There aren't any characters to remove.")
+
+def display(chars):
+    for char in chars:
+        print(f'{char["name"]}:\n\tHealth: {char["health"]}\n\tStrength: {char["strength"]}\n\tDefense: {char["defense"]}\n\tSpeed: {char["speed"]}\n\tLevel: {(char["level"] - 0.8) / 0.2}')
