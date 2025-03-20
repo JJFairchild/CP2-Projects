@@ -1,5 +1,20 @@
 #Jonas Fairchild, Battle Simulator
 
+"""
+Random Generation:
+Use Faker to generate random character names and backstories
+
+Character Visualization:
+Create a radar chart or bar graph to display a character's stats using Matplotlib
+
+Data Analysis:
+Use Pandas to load character data into a DataFrame
+Implement basic statistical analysis on character attributes (e.g., mean, median, max, min)
+
+Documentation Reading:
+Demonstrate understanding of library documentation by implementing at least one additional feature from each library not explicitly required above
+"""
+
 import os
 from characters import *
 from battle import battle
@@ -10,16 +25,25 @@ chars = load() #Load the characters from previous runs of the program.
 def main(chars): # Main function for the entire program.
     while True:
         os.system('cls')
-        match input("What do you want to do?\n1. Create a character\n2. Delete a character\n3. View characters\n4. Battle\n5. Exit\n"): # Show the user their choices and wait for their response.
+        match input("What do you want to do?\n1. Create a character\n2. Generate a random character \n3. Delete a character\n4. View characters\n5. Visualize a character's stats\n6. Analyze characters\n7. Battle\n8. Exit\n"): # Show the user their choices and wait for their response.
             case "1":
                 chars = create_char(chars)
             case "2":
-                chars = remove_char(chars)
+                #chars = random_char(chars)
+                pass
             case "3":
-                display(chars)
+                chars = remove_char(chars)
             case "4":
-                chars = battle(chars)
+                display(chars)
             case "5":
+                #visualize(chars)
+                pass
+            case "6":
+                #analyze(chars)
+                pass
+            case "7":
+                chars = battle(chars)
+            case "8":
                 break
             case _:
                 print("That's not a valid input. Try again.")

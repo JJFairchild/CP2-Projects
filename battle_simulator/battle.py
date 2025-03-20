@@ -6,10 +6,14 @@ from characters import get_char
 def battle(chars): # Master function for battles.
     if len(chars) >= 2: # Checks if there are enough characters to battle
         def levelup(char): # Inner function that gives a multiplier to each player's stats depending on their level.
-            char["strength"] *= char["level"]
-            char["health"] *= char["level"]
-            char["defense"] *= char["level"]
-            char["speed"] *= char["level"]
+            char["strength"] = int(char["strength"] * char["level"])
+            char["health"] = int(char["health"] * char["level"])
+            char["defense"] = int(char["defense"] * char["level"])
+            char["speed"] = int(char["speed"] * char["level"])
+            
+            int(char["health"])
+            int(char["defense"])
+            int(char["speed"])
             return char
         first_fighter = levelup(copy.deepcopy(get_char(chars, "battle", "'s the first character"))) # Gets the characters to be battled
         second_fighter = levelup(copy.deepcopy(get_char(chars, "battle", "'s the second character")))
