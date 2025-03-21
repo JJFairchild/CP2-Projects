@@ -1,9 +1,6 @@
 #Jonas Fairchild, Battle Simulator
 
 """
-Character Visualization:
-Create a radar chart or bar graph to display a character's stats using Matplotlib
-
 Data Analysis:
 Use Pandas to load character data into a DataFrame
 Implement basic statistical analysis on character attributes (e.g., mean, median, max, min)
@@ -22,7 +19,7 @@ chars = load() #Load the characters from previous runs of the program.
 def main(chars): # Main function for the entire program.
     while True:
         os.system('cls')
-        match input("What do you want to do?\n1. Create a character\n2. Generate a random character \n3. Delete a character\n4. View characters\n5. Visualize a character's stats\n6. Analyze characters\n7. Battle\n8. Exit\n"): # Show the user their choices and wait for their response.
+        match input("What do you want to do?\n1. Create a character\n2. Generate a random character \n3. Delete a character\n4. View characters\n5. Visualize character stats\n6. Analyze characters\n7. Battle\n8. Exit\n"): # Show the user their choices and wait for their response.
             case "1":
                 chars = create_char(chars)
             case "2":

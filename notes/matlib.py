@@ -1,22 +1,24 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-plt.style.use('_mpl-gallery')
+species = ('Adelie', 'Chinstrap', 'Gentoo')
+sex_counts = {
+    'Male': np.array([73, 34, 61]),
+    'Female': np.array([73, 34, 58]),
+}
+width = 0.6  # the width of the bars: can also be len(x) sequence
 
-# make data
-x = np.linspace(0, 10, 100)
-y = 4 + 1 * np.sin(2 * x)
-x2 = np.linspace(0, 10, 25)
-y2 = 4 + 1 * np.sin(2 * x2)
 
-# plot
 fig, ax = plt.subplots()
+bottom = np.zeros(3)
 
-ax.plot(x2, y2 + 2.5, 'x', markeredgewidth=2)
-ax.plot(x, y, linewidth=2.0)
-ax.plot(x2, y2 - 2.5, 'o-', linewidth=2)
+for sex, sex_count in sex_counts.items():
+    p = ax.bar(species, sex_count, width, label=sex, bottom=bottom)
+    bottom += sex_count
 
-ax.set(xlim=(0, 8), xticks=np.arange(1, 8),
-       ylim=(0, 8), yticks=np.arange(1, 8))
+    ax.bar_label(p, label_type='center')
+
+ax.set_title('Character statistics')
+ax.legend()
 
 plt.show()
