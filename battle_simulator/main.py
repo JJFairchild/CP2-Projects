@@ -1,9 +1,6 @@
 #Jonas Fairchild, Battle Simulator
 
 """
-Random Generation:
-Use Faker to generate random character names and backstories
-
 Character Visualization:
 Create a radar chart or bar graph to display a character's stats using Matplotlib
 
@@ -29,7 +26,7 @@ def main(chars): # Main function for the entire program.
             case "1":
                 chars = create_char(chars)
             case "2":
-                #chars = random_char(chars)
+                chars = random_char(chars)
                 pass
             case "3":
                 chars = remove_char(chars)

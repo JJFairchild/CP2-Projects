@@ -1,3 +1,7 @@
+import random
+from faker import Faker
+faker = Faker()
+
 def get_prop(prop, num=True): # Helper function that defines a specific property of a fighter.
     if not num: # 'num' decides whether the output should be a number. This is helpful for selecting names, which are not numbers. By default, it is true.
         return input(f"What do you want the character's {prop} to be?: ").strip() # Directly return the user's choice.
@@ -37,6 +41,13 @@ def remove_char(chars): # Uses the get_char() function to select a specific char
 def display(chars): # Displays all the characters in a neat format.
     if chars:
         for char in chars:
-            print(f'{char["name"]}:\n\tHealth: {char["health"]}\n\tStrength: {char["strength"]}\n\tDefense: {char["defense"]}\n\tSpeed: {char["speed"]}\n\tLevel: {round((char["level"] - 0.8) / 0.2)}')
+            print(f'{char["name"]}:\n\tHealth: {round(char["health"] * char["level"])}\n\tStrength: {round(char["strength"] * char["level"])}\n\tDefense: {round(char["defense"] * char["level"])}\n\tSpeed: {round(char["speed"] * char["level"])}\n\tLevel: {round((char["level"] - 0.8) / 0.2)}')
     else:
         print("There are no characters to display.")
+
+def random_char(chars): # Generates and displays a random character using faker.
+    name = faker.name()
+    print(f"{name} has been working as a {faker.job()} for a long time. They are {random.randint(20, 50)} years old and recently moved out of {faker.city()}, {faker.state()} to join the battle group.")
+    chars.append({"name": name, 'health': random.randint(1,100), 'strength': random.randint(1,100), 'defense': random.randint(1,100), 'speed': random.randint(1,100), 'level': 1})
+    display([chars[-1]])
+    return chars
