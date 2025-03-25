@@ -15,13 +15,13 @@ How do you access the debugger in VS Code?
     F5 or you can run a debug on the left side or you can scroll down under the play button to debug python file
 
 What is testing?
-
+    Testing is when you go through your code and try to break it so that you can find problems and fix them. The best testers are other people because they didn't write your code.
 
 What are boundary conditions?
-
+    User inputs that are not outside bounds, but close enough that it might cause problems (extreme highs and lows, most likely to be wrong).
 
 How do you handle when users give strange inputs?
-
+    You can use try/except, conditionals, loops, recurstion, etc.
 
 """
 
