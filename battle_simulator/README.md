@@ -17,8 +17,8 @@ You can create characters, then manipulate, visualize, and do other things with 
 + Visualization - Create a bar graph, standard view, analyze/compare characters, 
 + Battle - You can make characters fight each other, which will level them up and add a multiplier to their stats.
 
-![Generation](CP2-Projects-2\battle_simulator\screenshot_generation.png) 
-![Analyzing](CP2-Projects-2\battle_simulator\screenshot_analyzing.png)  
+![Generation](battle_simulator\screenshot_generation.png) 
+![Analyzing](battle_simulator\screenshot_analyzing.png)  
 
 ## Used Technologies
 ---
