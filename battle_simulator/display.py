@@ -10,10 +10,10 @@ def visualize(chars):
 
     for char in chars:
         names.append(char['name'])
-        healths.append(char['health'])
-        strengths.append(char['strength'])
-        defenses.append(char['defense'])
-        speeds.append(char['speed'])
+        healths.append(char['health'] * char['level'])
+        strengths.append(char['strength'] * char['level'])
+        defenses.append(char['defense'] * char['level'])
+        speeds.append(char['speed'] * char['level'])
 
     type_counts = { # Organizes the lists into things that can be graphed
         'Health': np.array(healths),
