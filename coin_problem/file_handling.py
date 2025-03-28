@@ -1,15 +1,15 @@
 import csv
 
 def load():
-    denominations = []
+    denominations = {}
     with open("coin_problem/coins.csv", 'r') as file:
         csv_reader = csv.reader(file)
         for line in csv_reader:
-            zone = []
+            denominations.update({line[0]: []})
             for i in line:
-                try:
-                    zone.append(float(i))
-                except:
-                    zone.append(i)
-            denominations.append(zone)
+                if line.index(i) != 0:
+                    try:
+                        denominations[line[0]].append(float(i))
+                    except:
+                        denominations[line[0]].append(i)
     return denominations

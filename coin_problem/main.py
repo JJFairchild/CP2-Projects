@@ -20,4 +20,22 @@ Create a main function to handle user interaction and call the appropriate funct
 Error Handling:
 Ensure the program handles potential errors, such as the coin denomination file not being found or the user providing invalid inputs.
 '''
+import os
+from problem import *
 
+def main():
+    country = None
+    while True:
+        os.system('cls')
+        match input("What do you want to do?:\n1. Select a country\n2. Solve the coin change problem\n3. Exit\n"):
+            case '1':
+                country = get_country()
+            case '2':
+                solve(country)
+            case '3':
+                break
+            case _:
+                print("That's not a valid input. Try again.")
+        input("Done reading?: ")
+
+main()
