@@ -1,6 +1,6 @@
 import csv
 
-def load():
+def load(): #Imports the contents of coins.csv as a dictionary that the other files can work with.
     denominations = {}
     with open("coin_problem/coins.csv", 'r') as file:
         csv_reader = csv.reader(file)

@@ -1,8 +1,4 @@
 '''
-Coin Denomination File:
-Create a text or CSV file that contains the coin denominations for different countries (minimum of 4).
-Comma-separated list of coin names and values (e.g., "Penny-1,Nickel-5,Dime-10,Quarter-25").
-
 Coin Change Problem:
 Implement the logic to solve the Coin Change Problem using the provided coin denominations.
 The program should handle various edge cases, such as negative or zero target amounts, and invalid coin denominations.
@@ -23,11 +19,11 @@ Ensure the program handles potential errors, such as the coin denomination file 
 import os
 from problem import *
 
-def main():
+def main(): # Simple main function that branches out to other parts of the program.
     country = None
     while True:
         os.system('cls')
-        match input("What do you want to do?:\n1. Select a country\n2. Solve the coin change problem\n3. Exit\n"):
+        match input("What do you want to do?:\n1. Select a currency\n2. Solve the coin change problem\n3. Exit\n"):
             case '1':
                 country = get_country()
             case '2':
@@ -38,4 +34,8 @@ def main():
                 print("That's not a valid input. Try again.")
         input("Done reading?: ")
 
-main()
+try: # Basic error handling for if there are errors reading the file.
+    load()
+    main()
+except:
+    print("Reading the csv file caused an error. Try renaming it to 'coins.csv' or, if it does not exist, create a csv file with that name.")
