@@ -63,7 +63,7 @@ def tip(): #Calclulates how expensive an item is if a tip is included.
 def main(): 
     while True:
         os.system('cls')
-        choice = int(input("What do you want to do?\n1: Save for a goal\n2: Use compound interest calculator\n3: Allocate your income for budgeting\n4: Use sale calculator\n5: Use tip calculator\n"))
+        choice = int(input("What do you want to do?\n1: Save for a goal\n2: Use compound interest calculator\n3: Allocate your income for budgeting\n4: Use sale calculator\n5: Use tip calculator\n6: Exit\n"))
         if choice == 1:
             goalTime()
         elif choice == 2:
@@ -74,4 +74,6 @@ def main():
             sale()
         elif choice == 5:
             tip()
+        elif choice == 6:
+            break
         input("Done reading?: ")
