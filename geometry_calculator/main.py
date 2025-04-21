@@ -12,14 +12,19 @@ def main():
             print(f"Selected shape: {selected.name}")
         except:
             pass
-        match input("What do you want to do?:\n1. Create a shape\n2. Select a shape\n3. Run calculations\n4. Help\n5. Shape comparisons\n6. List shapes by value\n7. Exit\n"):
+        match input("What do you want to do?:\n1. Create a shape\n2. Select a shape\n3. View shape info\n4. Run calculations\n5. Shape comparisons\n6. List shapes by value\n7. Help\n8. Exit\n"):
             case "1":
                 shapes.append(make_shape())
-                print(shapes)
             case "2":
-                pass
+                selected = select_shape(shapes)
             case "3":
-                pass
+                shape_info(selected)
+            case "4":
+                calculate(selected)
+            case "8":
+                break
+            case _:
+                print("That's not a valid input. Try again.")
         input("Done reading?: ")
 
 
