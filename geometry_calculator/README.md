@@ -16,7 +16,7 @@ To use most of the features, you need to select an item, but first you need to c
 + Press '2' in the main menu. Fill out the fields.
 + Enjoy!
 
-![shape_comparisons](geometry_calculator/Screenshot 2025-04-22 003309.png)  
+![shape_comparisons](geometry_calculator/shape_comparisons.png)  
 
 ## Used Technologies
 ---
